@@ -206,7 +206,7 @@ body {
   inset: 0;
   background:
     linear-gradient(105deg, rgba(12, 12, 15, 0.92) 35%, rgba(12, 12, 15, 0.4) 70%),
-    url("assets/hero.png") center / cover no-repeat,
+    url("hero.png") center / cover no-repeat,
     linear-gradient(160deg, #1a1520 0%, #0a1628 40%, #1a0f05 100%);
 }
 

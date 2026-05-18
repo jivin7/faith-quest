@@ -9,7 +9,7 @@ const STORIES = [
     reward: { coins: 500, gems: 25 },
     unlockAt: 0,
     art: "linear-gradient(160deg, #1a3a5c, #0a2540)",
-    cover: "assets/noah-ark-cover.png",
+    cover: "noah-ark-cover.png",
     levels: [
       {
         id: 1,
@@ -335,7 +335,7 @@ const CHARACTERS = [
     name: "Faith Explorer",
     price: 0,
     currency: "coins",
-    sprite: "assets/character.png",
+    sprite: "character.png",
     desc: "Your starter hero.",
     starter: true,
   },
@@ -344,7 +344,7 @@ const CHARACTERS = [
     name: "Noah",
     price: 350,
     currency: "coins",
-    sprite: "assets/noah-character.png",
+    sprite: "noah-character.png",
     desc: "The faithful ark builder with his staff.",
   },
   {
@@ -352,7 +352,7 @@ const CHARACTERS = [
     name: "Shepherd",
     price: 220,
     currency: "coins",
-    sprite: "assets/character.png",
+    sprite: "character.png",
     desc: "A brave young shepherd.",
   },
 ];

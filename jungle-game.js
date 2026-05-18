@@ -54,7 +54,7 @@ const JungleGame = (() => {
   }
 
   function loadCharTexture(spriteUrl) {
-    const src = spriteUrl || "assets/character.png";
+    const src = spriteUrl || "character.png";
     return new Promise((resolve) => {
       if (!window.THREE) return resolve(null);
       new THREE.TextureLoader().load(
