@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Faith Quest — Discover. Play. Grow.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="top-bar">
+      <a href="#" class="logo" data-nav="dashboard">FAITH QUEST</a>
+      <nav class="main-nav" aria-label="Main">
+        <button type="button" class="nav-link active" data-nav="dashboard">Stories</button>
+        <button type="button" class="nav-link" data-nav="journey">My Journey</button>
+        <button type="button" class="nav-link" data-nav="leaderboard">Leaderboard</button>
+        <button type="button" class="nav-link" data-nav="shop">Shop</button>
+        <button type="button" class="nav-link" data-nav="about">About</button>
+      </nav>
+      <div class="top-profile">
+        <span class="level-pill">Level <span id="header-level">1</span></span>
+        <button type="button" class="avatar avatar-btn" id="header-avatar" title="Edit profile" aria-label="Edit profile">
+          <span class="avatar-initial" id="header-avatar-initial">W</span>
+          <img class="avatar-img hidden" id="header-avatar-img" alt="">
+        </button>
+      </div>
+    </header>
+
+    <!-- Dashboard -->
+    <main id="view-dashboard" class="view active">
+      <div class="dashboard-grid">
+        <!-- Hero -->
+        <section class="panel hero-panel">
+          <div class="hero-bg"></div>
+          <div class="hero-content">
+            <h1>FAITH QUEST</h1>
+            <p class="tagline">DISCOVER · PLAY · GROW</p>
+            <p class="hero-desc">Walk through Scripture as interactive stories. Complete levels, earn rewards, and grow in faith.</p>
+            <div class="hero-actions">
+              <button type="button" class="btn btn-gold" id="btn-start-quest">START QUEST</button>
+              <button type="button" class="btn btn-outline" id="btn-continue-hero">CONTINUE</button>
+            </div>
+            <div class="hero-footer">
+              <button type="button" class="icon-btn" title="Settings">⚙</button>
+              <button type="button" class="icon-btn" id="btn-sound" title="Sound">🔊 ON</button>
+              <button type="button" class="icon-btn" title="Notifications">🔔</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Stories carousel -->
+        <section class="panel stories-panel">
+          <div class="panel-head">
+            <h2>Choose Your Story</h2>
+            <div class="currency-bar">
+              <span class="coin">🪙 <strong id="coins-display">0</strong></span>
+              <span class="gem">💎 <strong id="gems-display">0</strong></span>
+              <button type="button" class="btn-mini" data-nav="shop">+</button>
+            </div>
+          </div>
+          <div class="story-scroll" id="story-cards"></div>
+        </section>
+
+        <!-- Profile -->
+        <section class="panel profile-panel">
+          <div class="profile-panel-head">
+            <h2>My Profile</h2>
+            <button type="button" class="btn btn-outline btn-sm" id="btn-edit-profile">Edit</button>
+          </div>
+          <button type="button" class="profile-avatar-wrap" id="profile-avatar-btn" aria-label="Change profile photo">
+            <span class="profile-avatar avatar avatar-lg" id="profile-avatar">
+              <span class="avatar-initial" id="profile-avatar-initial">W</span>
+              <img class="avatar-img hidden" id="profile-avatar-img" alt="">
+            </span>
+            <span class="profile-avatar-hint">Tap to change photo</span>
+          </button>
+          <p class="username" id="profile-name">WARRIOR_07</p>
+          <p class="profile-equipped-char" id="profile-equipped-char">Playing as: Faith Explorer</p>
+          <p class="profile-level">Level <span id="profile-level">1</span></p>
+          <div class="xp-bar">
+            <div class="xp-fill" id="xp-fill"></div>
+          </div>
+          <p class="xp-text"><span id="xp-current">0</span> / <span id="xp-max">500</span> XP</p>
+          <div class="stat-row">
+            <div><strong id="stat-stories">0</strong><span>Stories</span></div>
+            <div><strong id="stat-achievements">0</strong><span>Achievements</span></div>
+            <div><strong id="stat-points">0</strong><span>Points</span></div>
+          </div>
+          <h3 class="subhead">Recent Achievements</h3>
+          <ul class="achievement-feed" id="recent-achievements"></ul>
+        </section>
+
+        <!-- Story progress map -->
+        <section class="panel map-panel" id="map-panel">
+          <div class="map-panel-cover hidden" id="map-panel-cover" role="img" aria-hidden="true"></div>
+          <h2 id="map-story-title">NOAH'S ARK</h2>
+          <p class="subhead">Story Progress</p>
+          <div class="level-map" id="level-map"></div>
+          <p class="map-desc" id="map-desc"></p>
+          <div class="map-reward">
+            <span>Story reward:</span>
+            <strong id="map-reward-text">500 🪙 · 25 💎</strong>
+          </div>
+          <button type="button" class="btn btn-gold btn-wide" id="btn-map-continue">CONTINUE</button>
+        </section>
+
+        <!-- Gameplay preview cards -->
+        <section class="panel gameplay-preview">
+          <h2>Play Levels</h2>
+          <div class="preview-cards">
+            <article class="preview-card">
+              <div class="preview-ui">
+                <span>❤️❤️❤️</span>
+                <span class="timer">02:45</span>
+              </div>
+              <h3>Build the Ark</h3>
+              <p>Place pieces and follow God's plan.</p>
+            </article>
+            <article class="preview-card flood">
+              <div class="preview-ui">
+                <span>❤️❤️❤️</span>
+                <span class="timer">01:30</span>
+              </div>
+              <h3>The Flood</h3>
+              <p>Trust Him through the storm.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Achievements -->
+        <section class="panel achievements-panel">
+          <h2>Achievements</h2>
+          <div class="tabs" id="achievement-tabs">
+            <button type="button" class="tab active" data-tab="all">All</button>
+            <button type="button" class="tab" data-tab="stories">Stories</button>
+            <button type="button" class="tab" data-tab="challenges">Challenges</button>
+            <button type="button" class="tab" data-tab="special">Special</button>
+          </div>
+          <div class="badge-grid" id="badge-grid"></div>
+        </section>
+
+        <!-- Shop -->
+        <section class="panel shop-panel">
+          <h2>Shop</h2>
+          <div class="tabs shop-tabs">
+            <button type="button" class="tab">Featured</button>
+            <button type="button" class="tab active">Characters</button>
+            <button type="button" class="tab">Boosts</button>
+          </div>
+          <div class="shop-items" id="shop-items"></div>
+        </section>
+
+        <!-- Daily quest -->
+        <section class="panel daily-panel">
+          <h2>Daily Quest</h2>
+          <div class="daily-challenge">
+            <p>Finish 3 levels in any story</p>
+            <p class="daily-reward">300 🪙 · 15 💎</p>
+            <div class="progress-bar"><div class="progress-fill" id="daily-progress"></div></div>
+            <p class="daily-count"><span id="daily-done">0</span> / 3 today</p>
+          </div>
+          <blockquote class="daily-verse">
+            <p id="verse-text">I can do all things through Christ who strengthens me.</p>
+            <cite id="verse-ref">Philippians 4:13</cite>
+            <button type="button" class="btn btn-outline btn-sm">READ</button>
+          </blockquote>
+        </section>
+      </div>
+    </main>
+
+    <!-- Story detail (full screen) -->
+    <main id="view-story" class="view">
+      <button type="button" class="back-btn" data-back>← Back</button>
+      <div class="story-view-cover hidden" id="story-view-cover" role="img" aria-label="Story cover"></div>
+      <header class="story-header">
+        <h1 id="story-view-title">NOAH'S ARK</h1>
+        <p id="story-view-sub">5 levels · Bible adventure</p>
+      </header>
+      <div class="level-map large" id="story-level-map"></div>
+      <p class="story-blurb" id="story-blurb"></p>
+      <p id="story-mission-unlock" class="story-mission-banner hidden">All 5 levels complete — the full story mission is unlocked!</p>
+      <button type="button" class="btn btn-gold btn-wide" id="btn-story-continue">CONTINUE</button>
+      <button type="button" class="btn btn-mission btn-wide hidden" id="btn-play-mission">PLAY STORY MISSION</button>
+    </main>
+
+    <!-- Story mission (interactive — like reference UI) -->
+    <main id="view-mission" class="view view-mission">
+      <header class="mission-top-bar">
+        <a href="#" class="mission-logo" data-mission-nav="dashboard">
+          <span class="compass-icon">✦</span>
+          <span>
+            <strong>FAITH QUEST</strong>
+            <small>Discover · Believe · Live</small>
+          </span>
+        </a>
+        <div class="now-playing" id="mission-now-playing">
+          <span class="np-label">NOW PLAYING</span>
+          <span class="np-thumb" id="mission-np-thumb">🛶</span>
+          <span>
+            <strong id="mission-np-title">Noah's Ark</strong>
+            <small id="mission-np-caption">Obey God and build the ark.</small>
+          </span>
+        </div>
+        <div class="mission-stats">
+          <span class="energy-pill">⚡ <strong id="mission-energy">350</strong></span>
+          <div class="mission-level-wrap">
+            <span>LEVEL <strong id="mission-player-level">4</strong></span>
+            <div class="mission-level-bar"><div id="mission-level-fill"></div></div>
+          </div>
+          <button type="button" class="avatar avatar-btn" id="mission-header-avatar" title="Profile">
+            <span class="avatar-initial" id="mission-avatar-initial">W</span>
+            <img class="avatar-img hidden" id="mission-avatar-img" alt="">
+          </button>
+          <button type="button" class="icon-btn" data-mission-nav="dashboard" title="Settings">⚙</button>
+        </div>
+      </header>
+
+      <div class="mission-layout">
+        <aside class="mission-sidebar left">
+          <h3>STORIES</h3>
+          <ul class="mission-story-list" id="mission-story-list"></ul>
+          <blockquote class="mission-daily-verse">
+            <p id="mission-sidebar-verse">Trust in the Lord with all your heart.</p>
+            <cite id="mission-sidebar-verse-ref">Proverbs 3:5</cite>
+          </blockquote>
+        </aside>
+
+        <section class="mission-center">
+          <div class="objective-float" id="mission-objective-float">
+            <span class="obj-label">CURRENT OBJECTIVE</span>
+            <strong id="mission-objective-title">Gather Wood</strong>
+            <span class="obj-progress" id="mission-objective-count">0 / 10</span>
+          </div>
+          <div class="mission-scene" id="mission-scene">
+            <canvas id="jungle-canvas" class="jungle-canvas hidden" aria-label="3D mission world — move and interact"></canvas>
+            <div id="jungle-controls-hint" class="jungle-controls-hint hidden">
+              <span>WASD</span> move · <span>drag</span> or <span>Q/E</span> rotate camera · <span>SPACE</span> to act
+            </div>
+            <div id="mission-cinematic" class="mission-cinematic hidden" aria-live="polite">
+              <p id="mission-cinematic-text"></p>
+            </div>
+            <div id="mobile-controls" class="mobile-controls hidden" aria-hidden="true">
+              <div class="mobile-joystick-wrap">
+                <span class="mobile-control-label">MOVE</span>
+                <div id="joystick-zone" class="joystick-zone" aria-label="Move character">
+                <div class="joystick-base">
+                  <div id="joystick-stick" class="joystick-stick"></div>
+                </div>
+                </div>
+              </div>
+              <div class="mobile-camera-hint" id="mobile-camera-hint">Drag to look around</div>
+              <div class="mobile-actions-col">
+                <div class="mobile-zoom-row">
+                  <button type="button" class="mobile-zoom-btn" id="mobile-zoom-in" aria-label="Zoom in">+</button>
+                  <button type="button" class="mobile-zoom-btn" id="mobile-zoom-out" aria-label="Zoom out">-</button>
+                </div>
+                <p class="mobile-tap-label" id="mobile-tap-label">Walk to a tree</p>
+                <button type="button" class="mobile-action-btn" id="mobile-action-btn" aria-label="Action">
+                  <span class="mobile-action-icon" id="mobile-action-icon">🪓</span>
+                  <span class="mobile-action-text" id="mobile-action-text">CHOP</span>
+                </button>
+              </div>
+            </div>
+            <button type="button" class="scene-action hidden" id="mission-scene-action">Continue</button>
+          </div>
+          <div class="mission-scene-footer">
+            <div class="tools-bar" id="mission-tools"></div>
+            <div class="collect-progress">
+              <span id="mission-collect-label">WOOD COLLECTED</span>
+              <strong id="mission-collect-count">0 / 10</strong>
+              <div class="progress-bar mission-bar"><div class="progress-fill" id="mission-collect-fill"></div></div>
+            </div>
+          </div>
+          <blockquote class="mission-verse-overlay">
+            <span class="quote-mark">"</span>
+            <p id="mission-verse-overlay"></p>
+            <span class="quote-mark">"</span>
+          </blockquote>
+        </section>
+
+        <aside class="mission-sidebar right">
+          <h3>Steps to Complete</h3>
+          <button type="button" class="btn-restart-mission" id="btn-restart-mission" title="Start this mission over">↺ Restart Mission</button>
+          <ol class="mission-steps" id="mission-steps"></ol>
+          <div class="mission-tip">
+            <span class="tip-icon">💡</span>
+            <div>
+              <strong>TIP</strong>
+              <p id="mission-tip-text">God gave Noah a mission. Stay focused and trust His plan!</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <nav class="mission-bottom-nav">
+        <button type="button" data-mission-nav="dashboard"><span>🏠</span> HOME</button>
+        <button type="button" data-mission-nav="stories"><span>📖</span> STORIES</button>
+        <button type="button" class="active" data-mission-nav="mission"><span>🚩</span> MISSIONS</button>
+        <button type="button" data-mission-nav="profile"><span>👤</span> PROFILE</button>
+      </nav>
+    </main>
+
+    <!-- Gameplay -->
+    <main id="view-game" class="view">
+      <header class="game-hud">
+        <button type="button" class="back-btn" data-back-game>←</button>
+        <span class="hearts" id="game-hearts">❤️❤️❤️</span>
+        <span class="game-timer" id="game-timer">03:00</span>
+        <button type="button" class="btn-mini" id="btn-pause">⏸</button>
+      </header>
+      <div class="game-stage">
+        <h2 id="level-title">Level 1</h2>
+        <p id="level-objective">Answer wisely to continue the story.</p>
+        <div id="game-content" class="game-content"></div>
+        <div class="game-progress">
+          <div class="progress-bar"><div class="progress-fill" id="level-progress"></div></div>
+        </div>
+      </div>
+      <div id="game-result" class="game-result hidden">
+        <h2 id="result-title">Level Complete!</h2>
+        <p id="result-msg"></p>
+        <p id="result-reward"></p>
+        <button type="button" class="btn btn-gold" id="btn-next-level">Next Level</button>
+        <button type="button" class="btn btn-mission hidden" id="btn-result-mission">Play Story Mission</button>
+        <button type="button" class="btn btn-outline" id="btn-exit-story">Back to Stories</button>
+      </div>
+    </main>
+
+    <!-- Simple placeholder views -->
+    <main id="view-journey" class="view placeholder-view">
+      <button type="button" class="back-btn" data-nav="dashboard">← Dashboard</button>
+      <h1>My Journey</h1>
+      <p>Your completed stories and devotion path will appear here.</p>
+      <ul id="journey-list"></ul>
+    </main>
+    <main id="view-leaderboard" class="view placeholder-view">
+      <button type="button" class="back-btn" data-nav="dashboard">← Dashboard</button>
+      <h1>Leaderboard</h1>
+      <ol class="leaderboard" id="leaderboard-list"></ol>
+    </main>
+    <main id="view-shop" class="view placeholder-view">
+      <button type="button" class="back-btn" data-nav="dashboard">← Dashboard</button>
+      <h1>Shop</h1>
+      <div class="tabs shop-tabs">
+        <button type="button" class="tab">Featured</button>
+        <button type="button" class="tab active">Characters</button>
+        <button type="button" class="tab">Boosts</button>
+      </div>
+      <div class="shop-items full" id="shop-items-full"></div>
+    </main>
+    <main id="view-about" class="view placeholder-view">
+      <button type="button" class="back-btn" data-nav="dashboard">← Dashboard</button>
+      <h1>About Faith Quest</h1>
+      <p>Faith Quest helps you explore Bible stories through short, playable levels—quizzes, choices, and challenges rooted in Scripture.</p>
+    </main>
+  </div>
+
+  <div id="profile-modal" class="modal hidden" role="dialog" aria-labelledby="profile-modal-title" aria-modal="true">
+    <div class="modal-backdrop" data-close-profile></div>
+    <div class="modal-card profile-modal-card">
+      <h2 id="profile-modal-title">Edit Profile</h2>
+      <p class="modal-sub">Choose your display name and photo.</p>
+      <label class="profile-upload">
+        <span class="profile-avatar avatar avatar-xl" id="modal-avatar-preview">
+          <span class="avatar-initial" id="modal-avatar-initial">W</span>
+          <img class="avatar-img hidden" id="modal-avatar-img" alt="">
+        </span>
+        <span class="profile-upload-label">Upload photo</span>
+        <input type="file" id="profile-photo-input" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+      </label>
+      <button type="button" class="btn-text" id="btn-remove-photo">Remove photo</button>
+      <label class="field-label" for="profile-name-input">Display name</label>
+      <input type="text" id="profile-name-input" class="profile-name-input" maxlength="24" placeholder="Your name" autocomplete="nickname">
+      <p class="field-hint" id="profile-name-error" hidden>Name must be 2–24 characters.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" data-close-profile>Cancel</button>
+        <button type="button" class="btn btn-gold" id="btn-save-profile">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="jungle-game.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
